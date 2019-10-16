@@ -1,0 +1,5 @@
+TestVPCCloudFormPublicRouteAssociationB:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: !Ref TestVPCCloudFormPublicRouteTable
+      SubnetId: !Ref TestVPCCloudFormPublicSubnetB

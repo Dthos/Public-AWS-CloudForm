@@ -1,0 +1,75 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creates a VPC with public and private subnets 
+Resources:
+  VPC_nameOfVPC: 
+    Type: AWS::EC2::VPC
+    Properties: 
+      CidrBlock: 192.168.101.0/24
+  PublicSubnetA_nameOfPublicSubnet: 
+    Type: AWS::EC2::Subnet
+    Properties: 
+      AvailabilityZone: !Select 
+        - 0
+        - !GetAZs 
+          Ref: AWS::Region
+      CidrBlock: 192.168.101.0/28
+      MapPublicIpOnLaunch: true
+      VpcId: !Ref VPC_NameofVPC
+  PrivateSubnetA_nameOfPrivateSubnet: 
+    Type: AWS::EC2::Subnet
+    Properties: 
+      AvailabilityZone: !Select 
+        - 0
+        - !GetAZs 
+          Ref: AWS::Region
+      CidrBlock: 192.168.101.32/28
+      MapPublicIpOnLaunch: false
+      VpcId: !Ref VPC
+  InternetGateway: 
+    Type: AWS::EC2::InternetGateway
+  AttachGateway: 
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties: 
+      InternetGatewayId: !Ref InternetGateway
+      VpcId: !Ref VPC
+  PublicRouteTable: 
+    DependsOn: AttachGateway
+    Type: AWS::EC2::RouteTable
+    Properties: 
+      VpcId: !Ref VPC
+  PublicDefaultRoute: 
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+      RouteTableId: !Ref PublicRouteTable
+  PublicRouteAssociationA: 
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnetA
+  PublicSubnetB: 
+    Type: AWS::EC2::Subnet
+    Properties: 
+      AvailabilityZone: !Select 
+        - 1
+        - !GetAZs 
+          Ref: AWS::Region
+      CidrBlock: 192.168.101.16/28
+      MapPublicIpOnLaunch: true
+      VpcId: !Ref VPC
+  PrivateSubnetB: 
+    Type: AWS::EC2::Subnet
+    Properties: 
+      AvailabilityZone: !Select 
+        - 1
+        - !GetAZs 
+          Ref: AWS::Region
+      CidrBlock: 192.168.101.48/28
+      MapPublicIpOnLaunch: false
+      VpcId: !Ref VPC
+  PublicRouteAssociationB: 
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties: 
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnetB

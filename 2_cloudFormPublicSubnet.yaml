@@ -1,0 +1,191 @@
+PublicSubnetA_nameOfPublicSubnet: 
+    Type: AWS::EC2::Subnet
+    Properties: 
+      AvailabilityZone: !Select 
+        - 0
+        - !GetAZs 
+          Ref: AWS::Region
+      CidrBlock: 192.168.101.0/28
+      MapPublicIpOnLaunch: true
+      VpcId: !Ref VPC_NameofVPC
+
+#	Syntax
+#	
+#	To declare this entity in your AWS CloudFormation template, use the following syntax:
+#	
+#	JSON
+#	
+#	{
+#	  "Type" : "AWS::EC2::Subnet",
+#	  "Properties" : {
+#	      "AssignIpv6AddressOnCreation" : Boolean,
+#	      "AvailabilityZone" : String,
+#	      "CidrBlock" : String,
+#	      "Ipv6CidrBlock" : String,
+#	      "MapPublicIpOnLaunch" : Boolean,
+#	      "Tags" : [ Tag, ... ],
+#	      "VpcId" : String
+#	    }
+#	}
+#	
+#	YAML
+#	
+#	Type: AWS::EC2::Subnet
+#	Properties: 
+#	  AssignIpv6AddressOnCreation: Boolean
+#	  AvailabilityZone: String
+#	  CidrBlock: String
+#	  Ipv6CidrBlock: String
+#	  MapPublicIpOnLaunch: Boolean
+#	  Tags: 
+#	    - Tag
+#	  VpcId: String
+#	
+#	Properties
+#	
+#	AssignIpv6AddressOnCreation
+#	
+#	Indicates whether a network interface created in this subnet receives an IPv6 address. The default value is false.
+#	
+#	If you specify AssignIpv6AddressOnCreation, you must also specify Ipv6CidrBlock.
+#	
+#	If you specify AssignIpv6AddressOnCreation, you cannot specify MapPublicIpOnLaunch.
+#	
+#	Required: No
+#	
+#	Type: Boolean
+#	
+#	Update requires: No interruption
+#	
+#	AvailabilityZone
+#	
+#	The Availability Zone of the subnet.
+#	
+#	If you update this property, you must also update the CidrBlock property.
+#	
+#	Required: No
+#	
+#	Type: String
+#	
+#	Update requires: Replacement
+#	
+#	CidrBlock
+#	
+#	The IPv4 CIDR block assigned to the subnet.
+#	
+#	If you update this property, you must also update the AvailabilityZone property.
+#	
+#	Required: Yes
+#	
+#	Type: String
+#	
+#	Update requires: Replacement
+#	
+#	Ipv6CidrBlock
+#	
+#	The IPv6 CIDR block.
+#	
+#	If you specify AssignIpv6AddressOnCreation, you must also specify Ipv6CidrBlock.
+#	
+#	Required: Conditional
+#	
+#	Type: String
+#	
+#	Update requires: No interruption
+#	
+#	MapPublicIpOnLaunch
+#	
+#	Indicates whether instances launched in this subnet receive a public IPv4 address.
+#	
+#	If you specify MapPublicIpOnLaunch, you cannot specify AssignIpv6AddressOnCreation.
+#	
+#	Required: No
+#	
+#	Type: Boolean
+#	
+#	Update requires: No interruption
+#	
+#	Tags
+#	
+#	Any tags assigned to the subnet.
+#	
+#	Required: No
+#	
+#	Type: List of Tag
+#	
+#	Update requires: No interruption
+#	
+#	VpcId
+#	
+#	The ID of the VPC the subnet is in.
+#	
+#	If you update this property, you must also update the CidrBlock property.
+#	
+#	Required: Yes
+#	
+#	Type: String
+#	
+#	Update requires: Replacement
+#	
+#	Return Values
+#	
+#	Ref
+#	
+#	When you pass the logical ID of this resource to the intrinsic Ref function, Ref returns the ID of the subnet.
+#	
+#	For more information about using the Ref function, see Ref.
+#	
+#	Fn::GetAtt
+#	
+#	The Fn::GetAtt intrinsic function returns a value for a specified attribute of this type. The following are the available attributes and sample return values.
+#	
+#	For more information about using the Fn::GetAtt intrinsic function, see Fn::GetAtt.
+#	
+#	AvailabilityZone
+#	
+#	The Availability Zone of this subnet. For example:
+#	
+#	{ "Fn::GetAtt" : [ "mySubnet", "AvailabilityZone" ] }
+#	
+#	Ipv6CidrBlocks
+#	
+#	The IPv6 CIDR blocks that are associated with the subnet, such as [ 2001:db8:1234:1a00::/64 ].
+#	
+#	NetworkAclAssociationId
+#	
+#	The ID of the network ACL that is associated with the subnet's VPC, such as acl-5fb85d36.
+#	
+#	VpcId
+#	
+#	The ID of the subnet's VPC, such as vpc-11ad4878.
+#	
+#	Examples
+#	
+#	Subnet
+#	
+#	The following example uses the VPC ID from a VPC named myVPC that was declared elsewhere in the same template.
+#	
+#	JSON
+#	
+#	"mySubnet" : {
+#	   "Type" : "AWS::EC2::Subnet",
+#	   "Properties" : {
+#	      "VpcId" : { "Ref" : "myVPC" },
+#	      "CidrBlock" : "10.0.0.0/24",
+#	      "AvailabilityZone" : "us-east-1a",
+#	      "Tags" : [ { "Key" : "foo", "Value" : "bar" } ]
+#	   }
+#	}
+#	
+#	YAML
+#	
+#	  mySubnet:
+#	    Type: AWS::EC2::Subnet
+#	    Properties:
+#	      VpcId:
+#	        Ref: myVPC
+#	      CidrBlock: 10.0.0.0/24
+#	      AvailabilityZone: "us-east-1a"
+#	      Tags:
+#	      - Key: foo
+#	        Value: bar

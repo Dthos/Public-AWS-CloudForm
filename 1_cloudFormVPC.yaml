@@ -1,0 +1,142 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Creates a VPC with public and private subnets 
+Resources:
+  VPC_nameOfVPC: 
+    Type: AWS::EC2::VPC
+    Properties: 
+      CidrBlock: 192.168.101.0/24
+#	Type: AWS::EC2::VPC
+#	Properties: 
+#	  CidrBlock: String
+#	  EnableDnsHostnames: Boolean
+#	  EnableDnsSupport: Boolean
+#	  InstanceTenancy: String
+#	  Tags: 
+#	    - Tag
+#	
+#	Properties
+#	
+#	CidrBlock
+#	
+#	The primary IPv4 CIDR block for the VPC.
+#	
+#	Required: Yes
+#	
+#	Type: String
+#	
+#	Update requires: Replacement
+#	
+#	EnableDnsHostnames
+#	
+#	Indicates whether the instances launched in the VPC get DNS hostnames. If enabled, instances in the VPC get DNS hostnames; otherwise, they do not.
+#	
+#	You can only enable DNS hostnames if you've enabled DNS support.
+#	
+#	Required: No
+#	
+#	Type: Boolean
+#	
+#	Update requires: No interruption
+#	
+#	EnableDnsSupport
+#	
+#	Indicates whether the DNS resolution is supported for the VPC. If enabled, queries to the Amazon provided DNS server at the 169.254.169.253 IP address, or the reserved IP address at the base of the VPC network range "plus two" succeed. If disabled, the Amazon provided DNS service in the VPC that resolves public DNS hostnames to IP addresses is not enabled.
+#	
+#	Required: No
+#	
+#	Type: Boolean
+#	
+#	Update requires: No interruption
+#	
+#	InstanceTenancy
+#	
+#	The allowed tenancy of instances launched into the VPC.
+#	
+#	"default": An instance launched into the VPC runs on shared hardware by default, unless you explicitly specify a different tenancy during instance launch.
+#	"dedicated": An instance launched into the VPC is a Dedicated Instance by default, unless you explicitly specify a tenancy of host during instance launch. You cannot specify a tenancy of default during instance launch.
+#	
+#	Updating InstanceTenancy requires no replacement only if you are updating its value from "dedicated" to "default". Updating InstanceTenancy from "default" to "dedicated" requires replacement.
+#	
+#	Required: No
+#	
+#	Type: String
+#	
+#	Allowed Values: dedicated | default | host
+#	
+#	Update requires: No interruption
+#	
+#	Tags
+#	
+#	The tags for the VPC.
+#	
+#	Required: No
+#	
+#	Type: List of Tag
+#	
+#	Update requires: No interruption
+#	
+#	Return Values
+#	
+#	Ref
+#	
+#	When you pass the logical ID of this resource to the intrinsic Ref function, Ref returns the ID of the VPC.
+#	
+#	For more information about using the Ref function, see Ref.
+#	
+#	Fn::GetAtt
+#	
+#	The Fn::GetAtt intrinsic function returns a value for a specified attribute of this type. The following are the available attributes and sample return values.
+#	
+#	For more information about using the Fn::GetAtt intrinsic function, see Fn::GetAtt.
+#	
+#	CidrBlock
+#	
+#	The set of IP addresses for the VPC. For example, 10.0.0.0/16.
+#	
+#	CidrBlockAssociations
+#	
+#	A list of IPv4 CIDR block association IDs for the VPC. For example, [ vpc-cidr-assoc-0280ab6b ].
+#	
+#	DefaultNetworkAcl
+#	
+#	The default network ACL ID that is associated with the VPC. For example, acl-814dafe3.
+#	
+#	DefaultSecurityGroup
+#	
+#	The default security group ID that is associated with the VPC. For example, sg-b178e0d3.
+#	
+#	Ipv6CidrBlocks
+#	
+#	A list of IPv6 CIDR blocks that are associated with the VPC, such as [ 2001:db8:1234:1a00::/56 ].
+#	
+#	Examples
+#	
+#	VPC
+#	
+#	The following example specifies a VPC.
+#	
+#	JSON
+#	
+#	"myVPC" : {
+#	   "Type" : "AWS::EC2::VPC",
+#	   "Properties" : {
+#	      "CidrBlock" : "10.0.0.0/16",
+#	      "EnableDnsSupport" : "false",
+#	      "EnableDnsHostnames" : "false",
+#	      "InstanceTenancy" : "dedicated",
+#	      "Tags" : [ {"Key" : "foo", "Value" : "bar"} ]
+#	   }
+#	}
+#	
+#	YAML
+#	
+#	myVPC:
+#	  Type: AWS::EC2::VPC
+#	  Properties:
+#	    CidrBlock: 10.0.0.0/16
+#	    EnableDnsSupport: 'false'
+#	    EnableDnsHostnames: 'false'
+#	    InstanceTenancy: dedicated
+#	    Tags:
+#	     - Key: foo
+#	       Value: bar

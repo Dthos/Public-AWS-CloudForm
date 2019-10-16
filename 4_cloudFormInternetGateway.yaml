@@ -1,0 +1,73 @@
+InternetGateway: 
+    Type: AWS::EC2::InternetGateway
+  AttachGateway: 
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties: 
+      InternetGatewayId: !Ref InternetGateway
+      VpcId: !Ref VPC
+
+#	Syntax
+#	
+#	To declare this entity in your AWS CloudFormation template, use the following syntax:
+#	
+#	JSON
+#	
+#	{
+#	  "Type" : "AWS::EC2::InternetGateway",
+#	  "Properties" : {
+#	      "Tags" : [ Tag, ... ]
+#	    }
+#	}
+#	
+#	YAML
+#	
+#	Type: AWS::EC2::InternetGateway
+#	Properties: 
+#	  Tags: 
+#	    - Tag
+#	
+#	Properties
+#	
+#	Tags
+#	
+#	Any tags to assign to the internet gateway.
+#	
+#	Required: No
+#	
+#	Type: List of Tag
+#	
+#	Update requires: No interruption
+#	
+#	Return Values
+#	
+#	Ref
+#	
+#	When you pass the logical ID of this resource to the intrinsic Ref function, Ref returns the resource name.
+#	
+#	For more information about using the Ref function, see Ref.
+#	
+#	Examples
+#	
+#	Creating an Internet Gateway
+#	
+#	The following example creates an Internet gateway and assigns it a tag.
+#	
+#	JSON
+#	
+#	"Resources" : {
+#	   "myInternetGateway" : {
+#	      "Type" : "AWS::EC2::InternetGateway",
+#	      "Properties" : {
+#	        "Tags" : [ {"Key" : "foo", "Value" : "bar"}]
+#	      }
+#	   }
+#	}
+#	
+#	YAML
+#	
+#	  myInternetGateway:
+#	    Type: AWS::EC2::InternetGateway
+#	    Properties:
+#	      Tags:
+#	      - Key: foo
+#	        Value: bar

@@ -1,0 +1,43 @@
+{
+"AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "This is my first template",
+    "Metadata": {
+
+    },
+    "Parameters": {
+        
+        "ExistingVPCNameHere": {
+          "Type": "AWS::EC2::VPC",
+          "Properties": {
+            "CidrBlock": "----/--",
+            "Tags": [-]
+          },
+          
+          "SubnetNameHere": {
+            "Type": "AWS::EC2::Subnet",
+            "Properties": {
+              "AvailabilityZone": "-",
+              "VpcId": "-",
+              "CidrBlock": "-",
+              "Tags": ["-"]
+            }
+          }
+          
+        }
+        
+        
+    
+    },
+    "Mappings": {
+
+    },
+    "Conditions": {
+
+    },
+    "Resources": {
+
+    },
+    "Outputs": {
+
+    }
+}       

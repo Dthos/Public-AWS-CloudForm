@@ -1,0 +1,10 @@
+PublicSubnetB: 
+    Type: AWS::EC2::Subnet
+    Properties: 
+      AvailabilityZone: !Select 
+        - 1
+        - !GetAZs 
+          Ref: AWS::Region
+      CidrBlock: 192.168.101.16/28
+      MapPublicIpOnLaunch: true
+      VpcId: !Ref VPC
